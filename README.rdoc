@@ -1,3 +1,11 @@
-= custom
+= Custom Redmine enhancements
 
-Description goes here
+For internal use. This plugin contains a number of custom enhancements used in our Redmine instance.
+
+== Features
+- Custom top menus (quick All issues, Gantt, Calendar access)
+
+== License
+
+WTFPL license.
+
