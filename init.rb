@@ -4,9 +4,9 @@ require 'dispatcher'
 Dispatcher.to_prepare :redmine_custom do 
   require_dependency 'issue'
 
-  unless Issue.included_modules.include? RedmineCustom::IssueWatchablePatch
-    Issue.send(:include, RedmineCustom::IssueWatchablePatch)
-  end
+#  unless Issue.included_modules.include? RedmineCustom::IssueWatchablePatch
+#    Issue.send(:include, RedmineCustom::IssueWatchablePatch)
+#  end
 end
 
 Redmine::Plugin.register :redmine_custom do
