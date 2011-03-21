@@ -4,6 +4,7 @@ For internal use. This plugin contains a number of custom enhancements used in o
 
 == Features
 - Custom top menus (quick All issues, Gantt, Calendar access)
+- 'Projects' column in 'All issues' view contains full project path, including project ancestors
 
 == License
 
