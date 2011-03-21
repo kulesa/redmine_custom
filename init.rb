@@ -1,4 +1,9 @@
 require 'redmine'
+require 'dispatcher'
+
+Dispatcher.to_prepare :redmine_custom do 
+  # any patch goes here
+end
 
 Redmine::Plugin.register :redmine_custom do
   name 'Custom Redmine enhancements'
