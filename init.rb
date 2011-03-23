@@ -3,6 +3,7 @@ require 'dispatcher'
 
 Dispatcher.to_prepare :redmine_custom do 
   require_dependency 'mailer'
+  require_dependency 'redmine_custom/hooks'
 
   unless Mailer.included_modules.include? RedmineCustom::MailerPatch
     Mailer.send(:include, RedmineCustom::MailerPatch)
