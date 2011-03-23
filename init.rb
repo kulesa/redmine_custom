@@ -2,11 +2,11 @@ require 'redmine'
 require 'dispatcher'
 
 Dispatcher.to_prepare :redmine_custom do 
-  require_dependency 'issue'
+  require_dependency 'mailer'
 
-#  unless Issue.included_modules.include? RedmineCustom::IssueWatchablePatch
-#    Issue.send(:include, RedmineCustom::IssueWatchablePatch)
-#  end
+  unless Mailer.included_modules.include? RedmineCustom::MailerPatch
+    Mailer.send(:include, RedmineCustom::MailerPatch)
+  end
 end
 
 Redmine::Plugin.register :redmine_custom do
