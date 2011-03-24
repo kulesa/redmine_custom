@@ -22,4 +22,5 @@ Redmine::Plugin.register :redmine_custom do
   menu :top_menu, :gantt, {:controller => 'issues/gantt', :action => 'index' }, :caption => 'Gantt', :after => :all_tasks
   menu :top_menu, :files, {:controller => 'files', :action => 'index' }, :caption => 'Files', :after => :gantt
   menu :top_menu, :calendar, {:controller => 'issues/calendar', :action => 'index' }, :caption => 'Calendar', :after => :files
+  menu :top_menu, :buzz, {:controller => 'activity', :action => 'index' }, :caption => 'Buzz', :after => :calendar
 end
