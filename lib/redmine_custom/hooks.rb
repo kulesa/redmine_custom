@@ -14,5 +14,16 @@ module RedmineCustom
       ''
     end
   end
+
+  class ViewLayoutsBaseBodyBottomHook < Redmine::Hook::ViewListener
+    def view_layouts_base_body_bottom(context={})
+      if context[:controller] && context[:controller].is_a?(IssuesController)
+        return javascript_include_tag('raphael-min.js', :plugin => 'redmine_better_gantt_chart') + 
+          javascript_include_tag('http://nata.isclist.com/js_lib/mindmap.js')
+      else
+        return ''
+      end
+    end
+  end
 end
 
