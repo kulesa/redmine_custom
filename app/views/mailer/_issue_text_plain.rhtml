@@ -5,6 +5,8 @@
 <%=l(:field_status)%>: <%= issue.status %>
 <%=l(:field_priority)%>: <%= issue.priority %>
 <%=l(:field_assigned_to)%>: <%= issue.assigned_to %>
+<%=l(:field_start_date)%>: <%= issue.start_date %>
+<%=l(:field_due_date)%>: <%= issue.due_date %>
 <% issue.custom_values.each do |c| %><%= c.custom_field.name %>: <%= show_value(c) %>
 <% end %>
 
