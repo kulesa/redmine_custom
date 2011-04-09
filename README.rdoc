@@ -3,8 +3,15 @@
 For internal use. This plugin contains a number of custom enhancements used in our Redmine instance.
 
 == Features
-- Custom top menus (quick All issues, Gantt, Calendar access)
+- Custom top menus (quick All issues, Gantt, Calendar access, etc.)
 - 'Projects' column in 'All issues' view contains full project path, including project ancestors
+- All available users are marked as Watchers on issue creation
+- Global 'Forums' menu added
+- Links to issue attachments added to email notifications
+- Email notifications modified: removed version and category, added start and due dates
+- Mindmaps scripts added on 'Issues' tab
+- Project tree shows not only visible projects, but only visible are hyperlinked
+
 
 == License
 

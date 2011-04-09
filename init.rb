@@ -12,13 +12,17 @@ Dispatcher.to_prepare :redmine_custom do
   unless BoardsController.included_modules.include? RedmineCustom::BoardsPatch
     BoardsController.send(:include, RedmineCustom::BoardsPatch)
   end
+
+  unless ProjectsController.included_modules.include? RedmineCustom::ProjectsPatch
+    ProjectsController.send(:include, RedmineCustom::ProjectsPatch)
+  end
 end
 
 Redmine::Plugin.register :redmine_custom do
   name 'Custom Redmine enhancements'
   author 'Author name'
   description 'This plugin implements a nuber of custom enhancements used with our Redmine installation'
-  version '0.0.3'
+  version '0.1.0'
   url 'http://github.com/kulesa/redmine_custom'
   author_url 'http://github.com/kulesa'
   

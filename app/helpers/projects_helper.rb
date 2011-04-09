@@ -33,9 +33,12 @@ module ProjectsHelper
         else
           toggle = ""
         end
-        s << "<li class='#{classes}'><div class='#{classes}'>" +
-               toggle +
-               link_to_project(project, {}, :class => "project #{User.current.member_of?(project) ? 'my-project' : nil}")
+        if Project.visible.include?(project)
+          project_link = link_to_project(project, {}, :class => "project #{User.current.member_of?(project) ? 'my-project' : nil}")
+        else
+          project_link = "<span class='project'>#{project.name}</span>"
+        end
+        s << "<li class='#{classes}'><div class='#{classes}'>" + toggle + project_link
         s << "<div class='wiki description'>#{textilizable(project.short_description, :project => project)}</div>" unless project.description.blank?
         s << "</div>\n"
         ancestors << project
