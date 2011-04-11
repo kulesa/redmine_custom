@@ -13,8 +13,12 @@ Dispatcher.to_prepare :redmine_custom do
     BoardsController.send(:include, RedmineCustom::BoardsPatch)
   end
 
-  unless ProjectsController.included_modules.include? RedmineCustom::ProjectsPatch
-    ProjectsController.send(:include, RedmineCustom::ProjectsPatch)
+  unless ProjectsController.included_modules.include? RedmineCustom::ProjectsControllerPatch
+    ProjectsController.send(:include, RedmineCustom::ProjectsControllerPatch)
+  end
+
+  unless Project.included_modules.include? RedmineCustom::ProjectPatch
+    Project.send(:include, RedmineCustom::ProjectPatch)
   end
 end
 

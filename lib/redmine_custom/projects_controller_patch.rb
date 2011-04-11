@@ -1,5 +1,5 @@
 module RedmineCustom
-  module ProjectsPatch
+  module ProjectsControllerPatch
     def self.included(base)
      base.send(:include, InstanceMethods) 
 
@@ -9,12 +9,18 @@ module RedmineCustom
     end
 
     module InstanceMethods
-      # Include all projects, not only visible to the user
+      # Given:
+      # Project B is a descendant of project A. Both projects are not public.
+      # Current user is a member of project B, but not a member of project A. 
+      # Required: 
+      # On 'Projects' page current user should see project B as a node of project A,
+      # that is, user should know that project B is not a root project and has ancestors
+      # even though user cannot access them. Phew.
       def index_with_all_visible
         respond_to do |format|
           format.html { 
             if User.current.logged?
-              @projects = Project.find(:all, :order => 'lft') 
+              @projects = Project.visible_with_ancestors(:order => 'lft')
             else
               @projects = Project.visible.find(:all, :order => 'lft') 
             end
