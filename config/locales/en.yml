@@ -1,3 +1,5 @@
 # English strings go here for Rails i18n
 en:
   my_label: "My label"
+  custom_activity_module_title: "Buzz"
+  custom_all_issues_title: "All tasks"

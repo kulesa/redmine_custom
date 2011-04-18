@@ -30,10 +30,10 @@ Redmine::Plugin.register :redmine_custom do
   url 'http://github.com/kulesa/redmine_custom'
   author_url 'http://github.com/kulesa'
   
-  menu :top_menu, :all_tasks, {:controller => 'issues', :action => 'index' }, :caption => 'All tasks', :after => :projects
-  menu :top_menu, :gantt, {:controller => 'issues/gantt', :action => 'index' }, :caption => 'Gantt', :after => :all_tasks
-  menu :top_menu, :files, {:controller => 'files', :action => 'index' }, :caption => 'Files', :after => :gantt
-  menu :top_menu, :calendar, {:controller => 'issues/calendar', :action => 'index' }, :caption => 'Calendar', :after => :files
-  menu :top_menu, :boards, {:controller => 'boards', :action => 'index' }, :caption => 'Forums', :after => :calendar
-  menu :top_menu, :buzz, {:controller => 'activity', :action => 'index' }, :caption => 'Buzz', :after => :boards
+  menu :top_menu, :all_tasks, {:controller => 'issues', :action => 'index' }, :caption => :custom_all_issues_title, :after => :projects
+  menu :top_menu, :gantt, {:controller => 'issues/gantt', :action => 'index' }, :caption => :project_module_gantt, :after => :all_tasks
+  menu :top_menu, :files, {:controller => 'files', :action => 'index' }, :caption => :project_module_files, :after => :gantt
+  menu :top_menu, :calendar, {:controller => 'issues/calendar', :action => 'index' }, :caption => :project_module_calendar, :after => :files
+  menu :top_menu, :boards, {:controller => 'boards', :action => 'index' }, :caption => :label_board_plural, :after => :calendar
+  menu :top_menu, :buzz, {:controller => 'activity', :action => 'index' }, :caption => :custom_activity_module_title, :after => :boards
 end
