@@ -19,7 +19,7 @@ module RedmineCustom
       # Adds default value for due date to issue updates
       def update_issue_from_params_with_due_date
         update_issue_from_params_without_due_date
-        @issue.due_date ||= @issue.start_date + 1 
+        @issue.due_date ||= Date.today + 1 
       end
     end
   end
