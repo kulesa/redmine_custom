@@ -28,8 +28,12 @@ module ProjectsHelper
           end
         end
         classes = (ancestors.empty? ? 'root' : 'child')
-        if !project.descendants.empty?
-          toggle = "<a href='#' onclick='$(\"sub_#{project.id}\").toggle();'>[+]</a>" 
+        if !project.descendants.empty? && project.descendants.any? {|descendant| Project.visible.include?(descendant)}
+          toggle_statement = "$(\"sub_#{project.id}\").toggle();"
+          gsub_statement = "gsub(/\\[.]/, function(x){return x==\"[+]\"?\"[&ndash;]\":\"[+]\"})"
+          plus_minus_statement = "$(\"sub_#{project.id}_toggle\").update($(\"sub_#{project.id}_toggle\").text.#{gsub_statement});"
+          onclick = toggle_statement + plus_minus_statement
+          toggle = "<a id='sub_#{project.id}_toggle' href='#' onclick='#{onclick}'>[+]</a>" 
         else
           toggle = ""
         end
