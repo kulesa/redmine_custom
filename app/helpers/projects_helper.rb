@@ -33,7 +33,7 @@ module ProjectsHelper
           gsub_statement = "gsub(/\\[.]/, function(x){return x==\"[+]\"?\"[&ndash;]\":\"[+]\"})"
           plus_minus_statement = "$(\"sub_#{project.id}_toggle\").update($(\"sub_#{project.id}_toggle\").text.#{gsub_statement});"
           onclick = toggle_statement + plus_minus_statement
-          toggle = "<a id='sub_#{project.id}_toggle' href='#' onclick='#{onclick}'>[+]</a>" 
+          toggle = "<a id='sub_#{project.id}_toggle' href='#!' onclick='#{onclick}'>[+]</a>" 
         else
           toggle = ""
         end
