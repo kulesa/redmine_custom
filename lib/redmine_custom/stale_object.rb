@@ -8,7 +8,6 @@ module RedmineCustom
     def initialize(stale_object)
       raise ArgumentError.new("Call with an ActiveRecord object") unless stale_object.respond_to?(:attributes)
       @attributes = stale_object.attributes.dup
-      puts ">>>> Stale object reporting: #{@attributes}"
     end
     
     def differences(fresh_object, options = { })
