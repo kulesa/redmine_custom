@@ -2,6 +2,8 @@ module RedmineCustom
   class Hooks < Redmine::Hook::ViewListener
     include Redmine::I18n
     
+    render_on :view_issues_edit_notes_bottom, :partial => 'attachments/upload_conflict'
+
     def helper_issues_show_detail_after_setting(context = {})
       if context[:detail].property == 'attachment'
         a = Attachment.find_by_id(context[:detail].prop_key)

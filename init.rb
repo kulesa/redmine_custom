@@ -28,6 +28,10 @@ Dispatcher.to_prepare :redmine_custom do
   unless Issue.included_modules.include? RedmineCustom::IssueStaleErrorPatch
     Issue.send(:include, RedmineCustom::IssueStaleErrorPatch)
   end
+
+  unless Attachment.included_modules.include? RedmineCustom::AttachmentStaleErrorPatch
+    Attachment.send(:include, RedmineCustom::AttachmentStaleErrorPatch)
+  end
 end
 
 Redmine::Plugin.register :redmine_custom do

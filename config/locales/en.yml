@@ -4,3 +4,5 @@ en:
   custom_activity_module_title: "Buzz"
   custom_all_issues_title: "All tasks"
   label_updated_time_by_on: "Updated by %{author} %{age} ago, on %{on} at %{at}"
+  notice_file_saved_temporary: "File '%{filename}' was saved temporary. To save it permanently, submit this form again"
+  text_changed_to: "%{label} changed to %{new}"

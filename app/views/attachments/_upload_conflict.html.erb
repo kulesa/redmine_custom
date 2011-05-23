@@ -1,0 +1,12 @@
+<% if !issue.unsaved_attachments.empty? %>
+<div class="flash warning">
+  <ul>
+    <% issue.unsaved_attachments.each do |attachment| %>
+    <%= hidden_field_tag "attachments[#{attachment.id}][id]", h(attachment.id) %>
+    <li>
+      <%= l(:notice_file_saved_temporary, {:filename => h(attachment.filename)}) %>
+    </li>
+    <% end %>
+  </ul>
+</div>
+<% end %>

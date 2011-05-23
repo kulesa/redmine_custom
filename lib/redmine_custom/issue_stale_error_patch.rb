@@ -11,6 +11,11 @@ module RedmineCustom
     module InstanceMethods
 
       def save_issue_with_child_records_with_stale_object_handling(params, existing_time_entry=nil)
+        # Saving attachments out of transaction so they can be picked up later in case of StaleObjectError
+        if valid?
+          attachments = Attachment.attach_files(self, params[:attachments])
+        end
+
         Issue.transaction do
           if params[:time_entry] && params[:time_entry][:hours].present? && User.current.allowed_to?(:log_time, project)
             @time_entry = existing_time_entry || TimeEntry.new
@@ -23,8 +28,6 @@ module RedmineCustom
           end
       
           if valid?
-            attachments = Attachment.attach_files(self, params[:attachments])
-      
             attachments[:files].each {|a| @current_journal.details << JournalDetail.new(:property => 'attachment', :prop_key => a.id, :value => a.filename)}
             Redmine::Hook.call_hook(:controller_issues_edit_before_save, { :params => params, :issue => self, :time_entry => @time_entry, :journal => @current_journal})
             begin
@@ -34,7 +37,8 @@ module RedmineCustom
                 raise ActiveRecord::Rollback
               end
             rescue ActiveRecord::StaleObjectError
-              attachments[:files].each(&:destroy)
+              @attachments_not_on_journal = attachments
+              attachments[:files].each {|file| self.unsaved_attachments << file }
 
               stale_object = RedmineCustom::StaleObject.new(Issue.find(params[:id]))
               self.safe_attributes = params[:issue]
